@@ -1,0 +1,20 @@
+{
+  "englishName": "Flying Jacob",
+  "originalName": "Flygande Jakob",
+  "tags": [
+    "chicken"
+  ],
+  "mainImage": "img.jpg",
+  "description": "Delicious chicken dish",
+  "recipeTexts": [],
+  "ingredients": [
+    {
+      "name": "chicken",
+      "amount": "1"
+    },
+    {
+      "name": "banana",
+      "amount": "something like two"
+    }
+  ]
+}

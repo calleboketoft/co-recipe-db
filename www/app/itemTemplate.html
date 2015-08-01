@@ -1,0 +1,182 @@
+<div class="row">
+  <div class="col-xs-8">
+    <h1>
+      <button class="btn btn-default" style="margin-right: 20px;" ui-sref="root">&lt;- Back to Recipes</button>
+      {{::vm.recipe.contentJson.englishName}}
+      <span ng-if="vm.recipe.contentJson.originalName">
+    </h1>
+  </div>
+  <div class="col-xs-4">
+    <h1>
+      <button class="btn btn-primary pull-right" ng-if="!vm.editing" ng-click="vm.editing = true">Edit recipe</button>
+
+      <button class="btn btn-success pull-right"
+        ng-if="vm.editing"
+        ng-click="vm.saveChanges()"
+        style="margin-left: 10px;">
+        Save
+      </button>
+      <button class="btn btn-warning pull-right"
+        ng-if="vm.editing"
+        ng-click="vm.cancelEdit()">
+        Cancel
+      </button>
+    </h1>
+  </div>
+</div>
+
+<!-- VIEWING -->
+<div ng-if="!vm.editing" class="well">
+  <div class="row" style="margin-bottom: 15px">
+    <div class="col-md-4 col-xs-12">
+      <strong>{{:: vm.recipe.contentJson.englishName }}</strong>
+      <span ng-if="vm.recipe.contentJson.originalName"><br>{{:: vm.recipe.contentJson.originalName}}</span>
+      <br><br>
+      <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}"><br><br>
+      <strong>Description</strong><br>{{vm.recipe.contentJson.description}}
+      <br><br>
+      <strong>Tags</strong><br>
+      <span ng-repeat="tag in vm.recipe.contentJson.tags">{{::tag}}{{$last?'':', '}}</span>
+      <span ng-if="vm.recipe.contentJson.tags.length === 0"><em>no tags</em></span>
+    </div>
+    <div class="col-md-8 col-xs-12" style="overflow: hidden;">
+      <br><br>
+      <div class="row" ng-repeat="recipeText in vm.recipe.contentJson.recipeTexts">
+        <img ng-if="recipeText.format === 'image'" ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + recipeText.fileName}}">
+
+        <a ng-if="recipeText.format === 'url'" href="{{recipeText.url}}" target="_blank">Link to Recipe</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITING -->
+<div ng-if="vm.editing" style="margin-bottom: 50px;">
+  <form>
+    <div class="row well">
+      <div class="col-xs-12">
+        <h4>Basic stuff</h4>
+      </div>
+      <div class="col-xs-4">
+        <label>English name<input class="form-control" ng-model="vm.recipe.contentJson.englishName"/></label>
+      </div>
+      <div class="col-xs-4">
+        <label>Original name<input class="form-control" ng-model="vm.recipe.contentJson.originalName"/></label>
+      </div>
+      <div class="col-xs-4">
+        <label>Description<input class="form-control" ng-model="vm.recipe.contentJson.description"/></label>
+      </div>
+    </div>
+    <div class="row well">
+      <div class="col-xs-8">
+        <h4>Tag management</h4>
+        <co-selectable-items
+          selectable-values="vm.selectableTags"
+          selected-values="vm.recipe.contentJson.tags"
+          trigger-reload="vm.selectableItemsTrigger">
+        </co-selectable-items>
+      </div>
+      <div class="col-xs-4">
+        <label>New tag<input type="text" class="form-control" ng-model="vm.newTag"></label>
+        <button type="button" class="btn btn-info" ng-click="vm.addTag(vm.newTag)">
+          Add new tag
+        </button>
+      </div>
+    </div>
+
+    <div class="row well">
+      <div class="col-xs-4">
+        <h4>Main image</h4>
+      </div>
+      <div class="col-xs-8">
+        <h4>Available images</h4>
+      </div>
+      <div class="col-xs-4">
+        <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}">
+        <em ng-if="!vm.recipe.contentJson.mainImage">No main image chosen</em>
+      </div>
+      <div class="col-xs-8">
+        <div class="row">
+          <div class="col-xs-4" ng-repeat="image in vm.images">
+            <img style="width: 100px;"
+              ng-src="{{'recipes-db/' + image.dirrelpath + image.filename}}"
+              ng-click="vm.selectNewMainImage(image)" style="cursor:pointer;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3 style="margin-bottom: 20px;">
+      Recipes
+      <button type="button" class="btn btn-success pull-right"
+        ng-click="vm.addRecipeText(vm.newRecipeType)">
+        + Add
+      </button>
+      <select class="form-control pull-right"
+        ng-model="vm.newRecipeType"
+        ng-init="vm.newRecipeType = 'image'"
+        style="width: 150px; margin-right: 15px;">
+        <option value="image">Image</option>
+        <option value="url">Link</option>
+        <option value="pdf">PDF</option>
+        <option value="markdown">Markdown</option>
+      </select>
+    </h3>
+    <div class="row well" ng-repeat="recipeText in vm.recipe.contentJson.recipeTexts">
+      <div class="col-xs-12">
+        <h3>
+          {{recipeText.format + ', index: ' + $index}}
+          <button type="button" class="btn btn-danger pull-right"
+            ng-click="vm.removeRecipeText($index)">
+              Delete
+          </button>
+        </h3>
+      </div>
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <label>Language
+              <input type="text" class="form-control" value="english">
+            </label>
+          </div>
+          <div class="col-xs-4">
+            <label>Mini info
+              <input type="text" class="form-control" value="mini-info">
+            </label>
+          </div>
+          <div class="col-xs-4">
+            <label ng-if="recipeText.format === 'url'">
+              Link
+              <input type="text" class="form-control" value="url" ng-model="recipeText.url" placeholder="url">
+            </label>
+          </div>
+        </div>
+
+        <!-- recipeText.format === 'image' -->
+        <div class="row" ng-if="recipeText.format === 'image'">
+          <div class="col-xs-4">
+            <h4>Recipe image</h4>
+          </div>
+          <div class="col-xs-8">
+            <h4>Available images</h4>
+          </div>
+          <div class="col-xs-4" style="overflow:hidden;">
+            <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + recipeText.fileName}}">
+            <em ng-if="!recipeText.fileName">No recipe image chosen</em>
+          </div>
+          <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-4" ng-repeat="image in vm.images">
+                <img style="width: 100px; margin-bottom: 15px;"
+                  ng-src="{{'recipes-db/' + image.dirrelpath + image.filename}}"
+                  ng-click="vm.selectNewRecipeTextImage(recipeText, image.filename)" style="cursor:pointer;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+

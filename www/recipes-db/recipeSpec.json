@@ -1,0 +1,25 @@
+// an example of a recipe.json file
+{
+  "englishName": "Bibimbap soup",
+  "originalName": "비빔밥",
+  "tags": [
+    "rice",
+    "eggs"
+  ],
+  "mainImage": "",
+  "description": "Korean dish, mix and eat",
+  "recipeTexts": [
+    {
+      "language": "english",
+      "format": "markdown/url/image/pdf",
+      "url": "", // if link
+      "fileName": "" // if markdown/image/pdf
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "chicken",
+      "amount": "bunch"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<div class="container" ui-view>
+  <div class="row">
+    <div class="col-xs-3">
+      <h3>Recipes</h3>
+    </div>
+    <div class="col-xs-6">
+      <h3>
+        <input type="text" class="form-control pull-left"
+          style="width: 250px; margin-right: 10px;"
+          placeholder="Filter recipes"
+          ng-model="vm.recipeFilter">
+        <button type="button" class="btn btn-warning" ng-click="vm.recipeFilter = ''">
+          Clear
+        </button>
+      </h3>
+    </div>
+    <div class="col-xs-3">
+    </div>
+  </div>
+  <br><br>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4" ng-repeat="recipe in vm.filteredRecipes">
+      <a href="" ng-click="vm.goToItem(recipe)" style="color: black;">
+        <div class="well" style="height: 270px; overflow: hidden;">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>{{recipe.contentJson.englishName || 'name missing'}}</h4>
+              <div style="width: 200px; height: 150px; overflow: hidden; float:left; margin-right: 10px;">
+                <img ng-src="{{'recipes-db/' + recipe.dirrelpath + recipe.contentJson.mainImage}}" style="height: 150px;">
+              </div>
+              <div style="height: 150px; overflow: hidden;">
+                <strong>Description</strong>
+                {{recipe.contentJson.description}}
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-xs-12">
+              <div style="height: 75px;">
+                <strong>Tags: </strong><span ng-repeat="tag in recipe.contentJson.tags">{{::tag}}{{$last?'':', '}}</span>
+                <span ng-if="recipe.contentJson.tags.length === 0"><em>no tags</em></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+{
+  "englishName": "Chicken Marengo",
+  "originalName": "kyckling marengo",
+  "tags": [
+    "chicken",
+    "soup"
+  ],
+  "mainImage": "img.jpg",
+  "description": "Chicken soup with thyme",
+  "recipeTexts": [],
+  "ingredients": [
+    {
+      "name": "chicken",
+      "amount": "bunch"
+    }
+  ]
+}

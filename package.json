@@ -1,0 +1,41 @@
+{
+  "name": "20150728-recipes-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "comicrofiledb": "git+https://git@github.com/calleboketoft/coMicroFileDb.git",
+    "cors": "^2.7.1",
+    "express": "^4.13.1",
+    "jspm": "^0.16.0-beta.3",
+    "method-override": "^2.3.4",
+    "prompt": "^0.2.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/jspm/jspm.js install"
+  },
+  "author": "",
+  "license": "ISC",
+  "jspm": {
+    "directories": {
+      "baseURL": "www"
+    },
+    "dependencies": {
+      "Foxandxss/angular-toastr": "github:Foxandxss/angular-toastr@^1.4.1",
+      "angular": "github:angular/bower-angular@^1.4.3",
+      "angular-animate": "github:angular/bower-angular-animate@^1.4.3",
+      "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
+      "bootstrap": "github:twbs/bootstrap@^3.3.5",
+      "calleboketoft/coDebug": "github:calleboketoft/coDebug@^0.1.4",
+      "calleboketoft/coSelectableItems": "github:calleboketoft/coSelectableItems@^0.1.5",
+      "css": "github:systemjs/plugin-css@^0.1.13",
+      "text": "github:systemjs/plugin-text@^0.0.2"
+    },
+    "devDependencies": {
+      "typescript": "github:mhegazy/typescript@v1.5-beta2"
+    }
+  }
+}
