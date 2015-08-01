@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, '../www')))
 
 coMicroFileDb({
   app: app,
-  docsRootDir: path.resolve(__dirname, '../www/recipes-db'),
+  docsRootDir: path.resolve(__dirname, '../www/recipes-db-examples'),
   specFile: 'recipe.json',
   rootRoute: '/recipes'
 })
