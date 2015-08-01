@@ -32,7 +32,7 @@
       <strong>{{:: vm.recipe.contentJson.englishName }}</strong>
       <span ng-if="vm.recipe.contentJson.originalName"><br>{{:: vm.recipe.contentJson.originalName}}</span>
       <br><br>
-      <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}"><br><br>
+      <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}"><br><br>
       <strong>Description</strong><br>{{vm.recipe.contentJson.description}}
       <br><br>
       <strong>Tags</strong><br>
@@ -42,7 +42,7 @@
     <div class="col-md-8 col-xs-12" style="overflow: hidden;">
       <br><br>
       <div class="row" ng-repeat="recipeText in vm.recipe.contentJson.recipeTexts">
-        <img ng-if="recipeText.format === 'image'" ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + recipeText.fileName}}">
+        <img ng-if="recipeText.format === 'image'" ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}">
 
         <a ng-if="recipeText.format === 'url'" href="{{recipeText.url}}" target="_blank">Link to Recipe</a>
       </div>
@@ -92,14 +92,14 @@
         <h4>Available images</h4>
       </div>
       <div class="col-xs-4">
-        <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}">
+        <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}">
         <em ng-if="!vm.recipe.contentJson.mainImage">No main image chosen</em>
       </div>
       <div class="col-xs-8">
         <div class="row">
           <div class="col-xs-4" ng-repeat="image in vm.images">
             <img style="width: 100px;"
-              ng-src="{{'recipes-db/' + image.dirrelpath + image.filename}}"
+              ng-src="{{image.dirrelpath + image.filename}}"
               ng-click="vm.selectNewMainImage(image)" style="cursor:pointer;">
           </div>
         </div>
@@ -161,14 +161,14 @@
             <h4>Available images</h4>
           </div>
           <div class="col-xs-4" style="overflow:hidden;">
-            <img ng-src="{{'recipes-db/' + vm.recipe.dirrelpath + recipeText.fileName}}">
+            <img ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}">
             <em ng-if="!recipeText.fileName">No recipe image chosen</em>
           </div>
           <div class="col-xs-8">
             <div class="row">
               <div class="col-xs-4" ng-repeat="image in vm.images">
                 <img style="width: 100px; margin-bottom: 15px;"
-                  ng-src="{{'recipes-db/' + image.dirrelpath + image.filename}}"
+                  ng-src="{{image.dirrelpath + image.filename}}"
                   ng-click="vm.selectNewRecipeTextImage(recipeText, image.filename)" style="cursor:pointer;">
               </div>
             </div>
