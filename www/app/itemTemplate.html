@@ -28,11 +28,11 @@
 <!-- VIEWING -->
 <div ng-if="!vm.editing" class="well">
   <div class="row" style="margin-bottom: 15px">
-    <div class="col-md-4 col-xs-12">
+    <div class="col-md-4 col-xs-12" style="overflow: hidden;">
       <strong>{{:: vm.recipe.contentJson.englishName }}</strong>
       <span ng-if="vm.recipe.contentJson.originalName"><br>{{:: vm.recipe.contentJson.originalName}}</span>
       <br><br>
-      <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}"><br><br>
+      <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}" style="max-width: 250px;"><br><br>
       <strong>Description</strong><br>{{vm.recipe.contentJson.description}}
       <br><br>
       <strong>Tags</strong><br>
@@ -42,7 +42,7 @@
     <div class="col-md-8 col-xs-12" style="overflow: hidden;">
       <br><br>
       <div class="row" ng-repeat="recipeText in vm.recipe.contentJson.recipeTexts">
-        <img ng-if="recipeText.format === 'image'" ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}">
+        <img ng-if="recipeText.format === 'image'" ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}" style="max-width: 500px;">
 
         <a ng-if="recipeText.format === 'url'" href="{{recipeText.url}}" target="_blank">Link to Recipe</a>
       </div>
@@ -77,7 +77,8 @@
         </co-selectable-items>
       </div>
       <div class="col-xs-4">
-        <label>New tag<input type="text" class="form-control" ng-model="vm.newTag"></label>
+        <label>New tag<input type="text" class="form-control" ng-model="vm.newTag"
+          ng-keydown="vm.addTagKeydown($event, vm.newTag)"></label>
         <button type="button" class="btn btn-info" ng-click="vm.addTag(vm.newTag)">
           Add new tag
         </button>
@@ -92,7 +93,7 @@
         <h4>Available images</h4>
       </div>
       <div class="col-xs-4">
-        <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}">
+        <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}" style="max-width: 250px;">
         <em ng-if="!vm.recipe.contentJson.mainImage">No main image chosen</em>
       </div>
       <div class="col-xs-8">
@@ -161,7 +162,7 @@
             <h4>Available images</h4>
           </div>
           <div class="col-xs-4" style="overflow:hidden;">
-            <img ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}">
+            <img ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}" style="max-width: 250px;">
             <em ng-if="!recipeText.fileName">No recipe image chosen</em>
           </div>
           <div class="col-xs-8">

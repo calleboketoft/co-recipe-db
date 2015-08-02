@@ -70,4 +70,10 @@ export default class ItemController {
   public selectNewRecipeTextImage (recipeText, fileName) {
     recipeText.fileName = fileName
   }
+  
+  public addTagKeydown($event, newTag) {
+    if ($event.keyCode === 13) {
+      this.addTag(newTag)
+    }
+  }
 }
