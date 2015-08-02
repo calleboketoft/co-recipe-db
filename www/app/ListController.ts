@@ -14,6 +14,7 @@ export default class ListController {
     $scope.$watch(() => this.recipeFilter, () => {
       this.getRecipes()
     })
+    this.getNewRecipes()
   }
 
   public recipeFilter = ''
@@ -24,5 +25,9 @@ export default class ListController {
 
   public goToItem (item) {
     this.$state.go('root.item', { itemId: item.filerelpath })
+  }
+
+  public getNewRecipes () {
+    this.newRecipes = this.recipeService.getNewRecipes()
   }
 }

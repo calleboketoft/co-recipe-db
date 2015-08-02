@@ -127,4 +127,31 @@ export default class RecipeService {
 
     return filteredList
   }
+
+  // returns an object that specifies if a dir contains a recipe.json file or not
+  public dirsRecipeStatus () {
+    let dirs = this.allFiles.reduce((mem, fileData) => {
+      let isRecipeSpec = fileData.filename === 'recipe.json'
+      if (isRecipeSpec) {
+        // a recipe spec is found
+        mem[fileData.dirrelpath] = true
+      } else if (mem[fileData.dirrelpath] === undefined) {
+        // another filetype is found, and the mem has no record, set it to false
+        mem[fileData.dirrelpath] = false
+      }
+      return mem
+    }, {})
+    return dirs
+  }
+
+  public getNewRecipes () {
+    let dirs = this.dirsRecipeStatus()
+    let newRecipes = Object.keys(dirs).reduce((mem, dirName) => {
+      if (dirs[dirName] === false && dirName !== '') {
+        mem.push(dirName)
+      }
+      return mem
+    }, [])
+    return newRecipes
+  }
 }
