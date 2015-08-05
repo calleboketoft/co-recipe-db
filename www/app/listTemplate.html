@@ -31,6 +31,10 @@
                   ng-if="recipe.contentJson.mainImage"
                   ng-src="{{recipe.dirrelpath + recipe.contentJson.mainImage}}"
                   style="height: 150px;">
+                <img
+                  style="height: 150px;"
+                  ng-if="!recipe.contentJson.mainImage"
+                  src="app/placeholder.gif">
               </div>
               <div style="height: 150px; overflow: hidden;">
                 <strong>Description</strong>

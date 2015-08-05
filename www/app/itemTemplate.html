@@ -32,7 +32,11 @@
       <strong>{{:: vm.recipe.contentJson.englishName }}</strong>
       <span ng-if="vm.recipe.contentJson.originalName"><br>{{:: vm.recipe.contentJson.originalName}}</span>
       <br><br>
-      <img ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}" style="max-width: 250px;"><br><br>
+      <img
+        ng-src="{{vm.recipe.dirrelpath + vm.recipe.contentJson.mainImage}}"
+        ng-if="vm.recipe.contentJson.mainImage"
+        style="max-width: 250px;">
+      <br><br>
       <strong>Description</strong><br>{{vm.recipe.contentJson.description}}
       <br><br>
       <strong>Tags</strong><br>
