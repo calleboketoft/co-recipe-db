@@ -11,6 +11,12 @@ export default class ItemController {
       typeoffile: 'image',
       dirname: this.recipe.dirname
     })
+
+    this.pdfs = this.recipeService.getFiles({
+      typeoffile: 'pdf',
+      dirname: this.recipe.dirname
+    })
+    console.log(this.pdfs)
   }
 
   public selectableItemsTrigger = 0
@@ -70,7 +76,7 @@ export default class ItemController {
   public selectNewRecipeTextImage (recipeText, fileName) {
     recipeText.fileName = fileName
   }
-  
+
   public addTagKeydown($event, newTag) {
     if ($event.keyCode === 13) {
       this.addTag(newTag)

@@ -49,6 +49,8 @@
         <img ng-if="recipeText.format === 'image'" ng-src="{{vm.recipe.dirrelpath + recipeText.fileName}}" style="max-width: 500px;">
 
         <a ng-if="recipeText.format === 'url'" href="{{recipeText.url}}" target="_blank">Link to Recipe</a>
+
+        <a ng-if="recipeText.format === 'pdf'" href="{{vm.recipe.dirrelpath + recipeText.fileName}}">Open PDF</a>
       </div>
     </div>
   </div>
@@ -153,6 +155,11 @@
             <label ng-if="recipeText.format === 'url'">
               Link
               <input type="text" class="form-control" value="url" ng-model="recipeText.url" placeholder="url">
+            </label>
+            <label ng-if="recipeText.format === 'pdf'">
+              PDF
+              <select ng-options="pdf.filename as pdf.filename for pdf in vm.pdfs" ng-model="recipeText.fileName" class="form-control">
+              </select>
             </label>
           </div>
         </div>
