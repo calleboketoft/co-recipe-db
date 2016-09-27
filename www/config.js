@@ -1,22 +1,22 @@
 System.config({
-  "baseURL": "/",
-  "defaultJSExtensions": true,
-  "transpiler": "typescript",
-  "paths": {
-    "github:*": "jspm_packages/github/*"
+  baseURL: "/",
+  defaultJSExtensions: true,
+  transpiler: "typescript",
+  paths: {
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*"
   },
-  "packages": {
+
+  packages: {
     "app": {
       "defaultExtension": "ts"
     },
     "common": {
       "defaultExtension": "ts"
     }
-  }
-});
+  },
 
-System.config({
-  "map": {
+  map: {
     "Foxandxss/angular-toastr": "github:Foxandxss/angular-toastr@1.4.1",
     "angular": "github:angular/bower-angular@1.4.3",
     "angular-animate": "github:angular/bower-angular-animate@1.4.3",
@@ -27,7 +27,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.13",
     "less": "github:aaike/jspm-less-plugin@0.0.5",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "typescript": "github:mhegazy/typescript@v1.5-beta2",
+    "typescript": "npm:typescript@1.8.10",
     "github:aaike/jspm-less-plugin@0.0.5": {
       "less.js": "github:distros/less@2.4.0"
     },
@@ -37,9 +37,17 @@ System.config({
     "github:angular/bower-angular-animate@1.4.3": {
       "angular": "github:angular/bower-angular@1.4.3"
     },
+    "github:jspm/nodelibs-os@0.1.0": {
+      "os-browserify": "npm:os-browserify@0.1.2"
+    },
     "github:twbs/bootstrap@3.3.5": {
       "jquery": "github:components/jquery@2.1.4"
+    },
+    "npm:os-browserify@0.1.2": {
+      "os": "github:jspm/nodelibs-os@0.1.0"
+    },
+    "npm:typescript@1.8.10": {
+      "os": "github:jspm/nodelibs-os@0.1.0"
     }
   }
 });
-
